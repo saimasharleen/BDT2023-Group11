@@ -64,3 +64,49 @@ def average_degree_centrality(graph, community):
 for idx, community_nodes in communities.items():
     avg_degree_centrality = average_degree_centrality(G, community_nodes)
     print(f"Community {idx} - Average Degree Centrality:", avg_degree_centrality)
+
+import pandas as pd
+import networkx as nx
+import community
+import matplotlib.pyplot as plt
+
+# Load the dataset (replace 'path_to_dataset' with the actual path)
+data = pd.read_csv("/Users/saimasharleen/PycharmProjects/pythonProject1/facebook_combined.txt", sep=' ', header=None, names=['user1', 'user2'])
+
+# Create an empty undirected graph
+G = nx.Graph()
+
+# Add edges from the dataset to the graph
+for row in data.itertuples(index=False):
+    G.add_edge(row.user1, row.user2)
+
+# Perform Louvain community detection
+partition = community.best_partition(G)
+
+# Create a DataFrame to store the community assignment for each node
+community_df = pd.DataFrame(partition.items(), columns=['node', 'community'])
+
+# Get the number of communities and the nodes belonging to each community
+num_communities = max(partition.values()) + 1
+communities = {}
+for node, community_id in partition.items():
+    if community_id not in communities:
+        communities[community_id] = []
+    communities[community_id].append(node)
+
+# Visualize the network with nodes colored by their community assignments
+pos = nx.spring_layout(G)  # Layout for the visualization
+
+# Create a list of colors for the nodes based on community assignments
+colors = ['r', 'g', 'b', 'y', 'c', 'm', 'k']  # You can add more colors if needed
+node_colors = [colors[partition[node] % len(colors)] for node in G.nodes]
+
+# Draw the nodes with assigned colors based on communities
+nx.draw_networkx_nodes(G, pos, node_size=50, node_color=node_colors, cmap=plt.get_cmap('jet'))
+
+# Draw the edges
+nx.draw_networkx_edges(G, pos, alpha=0.5)
+
+# Display the plot
+plt.title("Community Detection Visualization")
+plt.show()
