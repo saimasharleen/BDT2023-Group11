@@ -32,3 +32,35 @@ for node, community_id in partition.items():
 # Display the nodes belonging to each community
 for community_id, nodes in communities.items():
     print(f"Community {community_id}: {nodes}")
+
+# Modularity Calculation
+modularity = community.modularity(partition, G)
+print("Modularity:", modularity)
+
+# Average Degree Calculation
+def average_degree(graph, community):
+    total_degree = sum(dict(graph.degree(community)).values())
+    return total_degree / len(community)
+for idx, community_nodes in communities.items():
+    avg_degree = average_degree(G, community_nodes)
+    print(f"Community {idx} - Average Degree:", avg_degree)
+
+# Density Calculation
+def density(graph, community):
+    subgraph = graph.subgraph(community)
+    num_edges_within_community = subgraph.number_of_edges()
+    num_nodes_within_community = subgraph.number_of_nodes()
+    return num_edges_within_community / (num_nodes_within_community * (num_nodes_within_community - 1) / 2)
+
+for idx, community_nodes in communities.items():
+    dens = density(G, community_nodes)
+    print(f"Community {idx} - Density:", dens)
+
+# Centrality Calculation (Average Degree Centrality)
+def average_degree_centrality(graph, community):
+    degree_centralities = nx.degree_centrality(graph)
+    return sum(degree_centralities[node] for node in community) / len(community)
+
+for idx, community_nodes in communities.items():
+    avg_degree_centrality = average_degree_centrality(G, community_nodes)
+    print(f"Community {idx} - Average Degree Centrality:", avg_degree_centrality)
