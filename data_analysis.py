@@ -1,58 +1,42 @@
-import sqlite3
-import pandas as pd
+from pyspark.sql import SparkSession
+from graphframes import GraphFrame
+import psycopg2
 
-def read_data_from_database():
-    # Connect to the database
-    conn = sqlite3.connect('data.db')
+def perform_graph_analysis(table_name):
+    # Create a SparkSession
+    spark = SparkSession.builder.appName("GraphAnalysis").getOrCreate()
 
-    # Read data from the database using SQL query
-    query = 'SELECT * FROM data_table'
-    data_df = pd.read_sql_query(query, conn)
+    # Replace the connection details with your own
+    conn = psycopg2.connect(
+        database="saimasharleen",
+        user="postgres",
+        password="postgres",
+        host="localhost",
+        port="5432"
+    )
+    cur = conn.cursor()
 
-    # Close the connection
+    # Replace table_name with your actual table name
+    query = f"SELECT FromNodeId, ToNodeId FROM data_table;"
+    cur.execute(query)
+
+    # Convert the data retrieved from PostgreSQL into a DataFrame
+    data = [row for row in cur]
+    df = spark.createDataFrame(data, schema=['src', 'dst'])
+
+    # Create vertices DataFrame
+    vertices_df = df.selectExpr("src as id").distinct()
+
+    # Create a GraphFrame from the edges and vertices DataFrames
+    graph = GraphFrame(vertices=vertices_df, edges=df)
+
+    # Perform graph analysis using GraphFrame APIs
+    # Example: Find the in-degree of each node
+    in_degrees = graph.inDegrees
+
+    # Show the results
+    in_degrees.show()
+
+    # Close the cursor and connection
+    cur.close()
     conn.close()
-
-    return data_df
-
-# Call the function to retrieve data from the database and create a pandas DataFrame
-df = read_data_from_database()
-
-# Display the retrieved data
-# print(df)
-
-import networkx as nx
-
-# Assuming the df has columns "sender" and "receiver"
-
-import pandas as pd
-
-def create_social_graph(logs_df):
-    G = nx.DiGraph()
-    for _, row in logs_df.iterrows():
-        sender = row["sender"]
-        receiver = row["receiver"]
-        G.add_edge(sender, receiver)
-    return G
-
-G = create_social_graph(df)
-
-def basic_network_analysis(G):
-    print(f"Number of nodes: {G.number_of_nodes()}")
-    print(f"Number of edges: {G.number_of_edges()}")
-    print(f"Degree Distribution: {dict(G.degree())}")
-    print(f"Clustering Coefficient: {nx.average_clustering(G)}")
-    print(f"Density: {nx.density(G)}")
-    print(f"Centralization: {nx.degree_centrality(G)}")
-
-
-basic_network_analysis(G)
-
-
-def community_detection(G):
-    communities = nx.community.girvan_newman(G)
-    top_level_communities = next(communities)
-    print(f"Communities: {list(top_level_communities)}")
-
-community_detection(G)
-
-
