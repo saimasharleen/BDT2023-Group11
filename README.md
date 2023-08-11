@@ -38,6 +38,12 @@ Web Hosts:
 Cloud Karafka
 PythonAnywhere
 ---
+Prerequisites:
+
+Python >= 3.7
+Spark >= 3.0.3
+Python packages: confluent_kafka, json, random, pyspark, flask, csv, mysql.connector, psycopg2, networkx, pyspark
+---
 ##### Architecture
 
 ![pipeline](https://github.com/saimasharleen/BDT2023-Group11/assets/126952273/088d3381-ed7b-45de-984f-215619070062)
