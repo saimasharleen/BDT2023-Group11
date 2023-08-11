@@ -35,14 +35,15 @@ The project is a big data system to examine and represent email conversation rec
 ---
 Web Hosts:
 
-Cloud Karafka
-PythonAnywhere
++ Cloud Karafka
++ PythonAnywhere
+  
 ---
 Prerequisites:
 
-Python >= 3.7
-Spark >= 3.0.3
-Python packages: confluent_kafka, json, random, pyspark, flask, csv, mysql.connector, psycopg2, networkx, pyspark
++ Python >= 3.7
++ Spark >= 3.0.3
++ Python packages: confluent_kafka, json, random, pyspark, flask, csv, mysql.connector, psycopg2, networkx, pyspark
 ---
 ##### Architecture
 
