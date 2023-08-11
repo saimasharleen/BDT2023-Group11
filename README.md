@@ -70,8 +70,11 @@ Prerequisites:
 > 2. `data_analysis_spark.py`: performs data analysis through Apache Spark
 
 > Folders:
-> `Data`
-> `Visualization`
+> `data`
+> `visualization`
+> `code`
+> `Report`
+> `Results`
 ---
 ##### How to run the project
 + run the "main.py"
