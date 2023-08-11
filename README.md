@@ -20,3 +20,29 @@ The project is a big data system to examine and represent email conversation rec
 - Analysis of the networks resulting from communication logs
 
 - Interactive visualization
+
+---
+
+##### Technologies
+
++ Gmail API
++ Kafka
++ PostgreSQL
++ SQLite
++ Apache Spark
+
+
+---
+
+##### Architecture
+
+
+![pipeline](https://github.com/saimasharleen/BDT2023-Group11/assets/126952273/088d3381-ed7b-45de-984f-215619070062)
+
+
+---
+
+##### Project files
+
+
+
