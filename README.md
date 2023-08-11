@@ -71,15 +71,15 @@ Prerequisites:
 
 > Folders:
 > 
-> `data`
+> `data`: Files related to datasets
 > 
-> `visualization`
+> `visualization`: Graphs, and other visual representations of the data and findings.
 > 
-> `code`
+> `code`:Files related to data analysis, such as scripts, and intermediate results.
 > 
-> `Report`
+> `Report`: Here you can find overview of the project results included key findings, limitations, conclusions, and visualizations that represent the core outcomes. Also, the terminal commands of the project.
 > 
-> `Results`
+> `Results`: Due to report pages limitation, we are putting all our project results in this folder.
 ---
 ##### How to run the project
 + run the "main.py"
