@@ -72,9 +72,12 @@ Prerequisites:
 > Folders:
 > 
 > `data`
+> 
 > `visualization`
+> 
 > `code`
 > `Report`
+> 
 > `Results`
 ---
 ##### How to run the project
