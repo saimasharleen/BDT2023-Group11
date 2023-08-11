@@ -1,0 +1,41 @@
+# Open Kafka shell
+docker exec -it kafka /bin/sh
+
+# Navigate to Kafka bin folder
+cd /opt/kafka_2.13-2.8.1/bin
+
+# List all files
+ls
+
+# Create Kafka topic (eu_kafka_topic)
+kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic eu_kafka_topic
+
+# List all Kafka topics
+kafka-topics.sh --list --zookeeper zookeeper:2181
+
+# See details of the kafka_topic
+kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic eu_kafka_topic
+
+# Delete the eu_kafka_topic (if needed)
+kafka-topics.sh --delete --zookeeper zookeeper:2181 --topic eu_kafka_topic
+
+# Specify eu_kafka_topic to produce messages
+kafka-console-producer.sh --broker-list kafka:9092 --topic eu_kafka_topic
+
+# Start consumer to consume messages from eu_kafka_topic
+kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic eu_kafka_topic
+
+# List all messages in eu_kafka_topic from the beginning
+kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic eu_kafka_topic --from-beginning
+
+# Run your data producer script
+python data_producer.py
+
+# Run your data cleaning script
+python data_cleaning.py
+
+# Run your main script for preprocessing and analysis
+python main.py
+
+# Start a simple HTTP server for serving your results (replace port if needed)
+python -m http.server 8000
