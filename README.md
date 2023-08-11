@@ -72,3 +72,16 @@ Prerequisites:
 > Folders:
 > `Data`
 > `Visualization`
+---
+##### How to run the project
++ run the "main.py"
+python3 main.py
++ You can run a simple python2 HTTP server with this command:
+  python3 -m http.server
++ Then you can navigate to any of the following files to see some visualizations:
+  localhost:8000/low.html
+  localhost:8000/low-node.html
+  localhost:8000/high.html
+  localhost:8000/high-node.html
+The files labelled as "low" retained objects with the lowest centrality, whereas the files labelled as "high" retained things with the highest centrality. The files labelled as "node" contained the nodes exhibiting the highest or lowest centrality, whereas the files lacking visualisation focused solely on the edges.
+
