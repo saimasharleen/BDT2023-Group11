@@ -58,6 +58,6 @@ The project is a big data system to examine and represent email conversation rec
 > 1. `preprocessing.py`: retrieves data, preprocesses it and computes metrics for analysis
 > 2. `data_analysis_spark.py`: performs data analysis through Apache Spark
 
-
-
-
+> Folders:
+> `Data`
+> `Visualization`
