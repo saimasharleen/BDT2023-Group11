@@ -36,13 +36,28 @@ The project is a big data system to examine and represent email conversation rec
 
 ##### Architecture
 
-
 ![pipeline](https://github.com/saimasharleen/BDT2023-Group11/assets/126952273/088d3381-ed7b-45de-984f-215619070062)
-
 
 ---
 
 ##### Project files
+
+> Dataset related
+> 
+> 1. `email-EuAll.txt`: basic dataset to run the code
+> 2. `restful_api.py`: retrieves data thanks to the Gmail API and stores it in a PostgreSQL database
+> 3. `data_producer.py`: reads data from the dataset and sends it to Kafka
+
+> Data cleaning and storage
+>
+> 1. `data_cleaning.py`: connects to PostgreSQL and stores data in a table
+> 2. `SQLite.py`: provides an alternative method of storage to PostgreSQL
+
+> Preprocessing and analysis
+>
+> 1. `preprocessing.py`: retrieves data, preprocesses it and computes metrics for analysis
+> 2. `data_analysis_spark.py`: performs data analysis through Apache Spark
+
 
 
 
