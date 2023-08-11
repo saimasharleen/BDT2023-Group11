@@ -58,6 +58,8 @@ Prerequisites:
 > 1. `email-EuAll.txt`: basic dataset to run the code
 > 2. `restful_api.py`: retrieves data thanks to the Gmail API and stores it in a PostgreSQL database
 > 3. `data_producer.py`: reads data from the dataset and sends it to Kafka
+> 4. `email-En-core.json`: contain data in JSON format representing a directed graph. Each object in the "nodes" array represents a node in the graph, and it contains information about the node's label and ID.
+> 5. `email-Eu-core-department-labels.txt`: file contains node labels associated with nodes in a graph. Each line in the file represents a node and its corresponding label.
 
 > Data cleaning and storage
 >
