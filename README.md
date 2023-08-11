@@ -33,7 +33,11 @@ The project is a big data system to examine and represent email conversation rec
 
 
 ---
+Web Hosts:
 
+Cloud Karafka
+PythonAnywhere
+---
 ##### Architecture
 
 ![pipeline](https://github.com/saimasharleen/BDT2023-Group11/assets/126952273/088d3381-ed7b-45de-984f-215619070062)
